@@ -71,10 +71,12 @@ careers.html                      careers page (roles + application process)
 apply.html                        application page (links to the Google Form, noindex)
 capabilities.html                 print-ready one-page capabilities overview
 sample-task.html                  interactive walkthrough of one synthetic eval task
+deliverables.html                 tabbed detail page for the four deliverable types
 privacy.html                      privacy page (linked from the footer)
 styles.css                        all styles; palette variables are at the top
 script.js                         mobile nav toggle only
 sample.js                         stepper for sample-task.html only
+tabs.js                           tabs for deliverables.html only
 sitemap.xml / robots.txt          crawl configuration
 assets/logo.jpg                   header logo (cropped from the original)
 assets/favicon.png                favicon, tight crop of the NPC mark
