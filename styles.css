@@ -804,6 +804,33 @@ a {
   max-width: 62ch;
 }
 
+.doc-card .doc-table {
+  margin: 4px 0 20px;
+  max-width: 460px;
+}
+
+.doc-card .doc-table:last-child {
+  margin-bottom: 4px;
+}
+
+.doc-card .card-label {
+  margin-top: 4px;
+}
+
+.doc-note {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+}
+
+.doc-quote {
+  border-left: 2px solid var(--hairline);
+  padding-left: 16px;
+  margin: 4px 0;
+  font-size: 0.9375rem;
+}
+
 mark.flaw {
   background: transparent;
   color: inherit;

@@ -4,21 +4,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Sample task | Northpath Consulting</title>
-  <meta name="description" content="An interactive walkthrough of one evaluation task, start to finish: the prompt, two model responses, the rubric, the judgment, and the record that ships. Fully synthetic example.">
+  <meta name="description" content="An interactive walkthrough of one evaluation task, start to finish: a persona and three documents, two model responses, a weighted rubric, the judgment, and the record that ships. Fully synthetic example.">
   <meta name="theme-color" content="#F6F7F1">
 
   <link rel="canonical" href="https://arnav183.github.io/northpath-website/sample-task.html">
 
   <meta property="og:type" content="website">
   <meta property="og:title" content="Sample task | Northpath Consulting">
-  <meta property="og:description" content="An interactive walkthrough of one evaluation task, start to finish: the prompt, two model responses, the rubric, the judgment, and the record that ships.">
+  <meta property="og:description" content="An interactive walkthrough of one evaluation task, start to finish: a persona and three documents, two model responses, a weighted rubric, the judgment, and the record that ships.">
   <meta property="og:url" content="https://arnav183.github.io/northpath-website/sample-task.html">
   <meta property="og:image" content="https://arnav183.github.io/northpath-website/assets/logo.jpg">
   <meta property="og:image:width" content="644">
   <meta property="og:image:height" content="254">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Sample task | Northpath Consulting">
-  <meta name="twitter:description" content="An interactive walkthrough of one evaluation task, start to finish: the prompt, two model responses, the rubric, the judgment, and the record that ships.">
+  <meta name="twitter:description" content="An interactive walkthrough of one evaluation task, start to finish: a persona and three documents, two model responses, a weighted rubric, the judgment, and the record that ships.">
   <meta name="twitter:image" content="https://arnav183.github.io/northpath-website/assets/logo.jpg">
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -61,7 +61,7 @@
     <div class="apply-head">
       <p class="section-label">sample task</p>
       <h1>One evaluation task, start to finish</h1>
-      <p>This walkthrough shows the shape of a single task from our evaluation pipeline: the prompt, two model responses, the rubric, the judgment, and the record that ships. A real dataset is this, several hundred times over.</p>
+      <p>This walkthrough shows the shape of a single task from our evaluation pipeline: a persona and a document set, two model responses, a weighted rubric, the judgment, and the record that ships. The answer cannot be read off any single document; it has to be assembled across all three. A real dataset is this, several hundred times over.</p>
       <p class="meta">fully synthetic example &middot; client tasks are covered by NDA</p>
     </div>
   </section>
@@ -77,73 +77,118 @@
 
     <section class="task-step active" aria-label="Step 1: the task">
       <h2>The task</h2>
-      <p>Every task pairs a prompt with source material and a verifiable ground truth. Here the assistant must compute from a table, which makes every claim in its answer checkable.</p>
+      <p>Every task starts from a persona with a real question and a document set that contains the answer in pieces. The documents below hold two buried complications. A strong response has to find both.</p>
+
+      <div class="prompt-card">
+        <p class="card-label">persona</p>
+        <p>Owner of a small retail bakery. One operating account, one card processor, one equipment loan. Not an accountant, and does not want to become one.</p>
+      </div>
+
       <div class="prompt-card">
         <p class="card-label">prompt</p>
-        <p>Using the table, how much did we exceed the cloud budget across Q1, and which month was worst?</p>
+        <p>My processor says I made $18,240 in March but my bank shows a lot less coming in. Where did the difference go, and am I still meeting the deposit requirement in my loan?</p>
       </div>
-      <table class="doc-table">
-        <caption class="card-label">source document: cloud spend, Q1</caption>
-        <thead>
-          <tr><th scope="col">month</th><th scope="col">budget</th><th scope="col">actual</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>January</td><td>$12,000</td><td>$13,850</td></tr>
-          <tr><td>February</td><td>$12,000</td><td>$11,600</td></tr>
-          <tr><td>March</td><td>$14,000</td><td>$16,730</td></tr>
-        </tbody>
-      </table>
-      <p class="task-note">Note the trap: February came in under budget, and the question does not say how to treat that. A good response resolves the ambiguity instead of ignoring it.</p>
+
+      <div class="prompt-card doc-card">
+        <p class="card-label">document 1: card processor statement, March</p>
+        <table class="doc-table">
+          <tbody>
+            <tr><td>gross card sales</td><td>$18,240</td></tr>
+            <tr><td>processing fees</td><td>$529</td></tr>
+            <tr><td>chargebacks</td><td>$312</td></tr>
+            <tr><td>net payouts</td><td>$17,399</td></tr>
+          </tbody>
+        </table>
+        <p class="card-label">payout batches</p>
+        <table class="doc-table">
+          <tbody>
+            <tr><td>March 7</td><td>$4,180</td></tr>
+            <tr><td>March 14</td><td>$4,610</td></tr>
+            <tr><td>March 21</td><td>$3,905</td></tr>
+            <tr><td>March 28</td><td>$3,499</td></tr>
+            <tr><td>March 31</td><td>$1,205</td><td class="doc-note">settles next business day</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="prompt-card doc-card">
+        <p class="card-label">document 2: operating account statement, March</p>
+        <table class="doc-table">
+          <tbody>
+            <tr><td>March 7</td><td>CARDPROC DEPOSIT</td><td>$4,180</td></tr>
+            <tr><td>March 14</td><td>CARDPROC DEPOSIT</td><td>$4,610</td></tr>
+            <tr><td>March 21</td><td>CARDPROC DEPOSIT</td><td>$3,905</td></tr>
+            <tr><td>March 28</td><td>CARDPROC DEPOSIT</td><td>$3,499</td></tr>
+            <tr><td>March total</td><td></td><td>$16,194</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="prompt-card doc-card">
+        <p class="card-label">document 3: equipment loan agreement, excerpt</p>
+        <p class="doc-quote">Section 4.2. Monthly deposits into the operating account attributable to card sales shall not fall below $16,500. Breach of this covenant permits rate adjustment under Section 7.</p>
+      </div>
     </section>
 
     <section class="task-step" aria-label="Step 2: the responses">
       <h2>Two model responses</h2>
-      <p>The same prompt goes to two models. Read both. One of them contains two verifiable failures.</p>
+      <p>The same prompt and documents go to two models. Read both. One contains three verifiable failures, and every one of them sounds reasonable until you check the documents.</p>
       <div class="response-grid">
         <div class="response-card" id="response-a">
           <p class="card-label">response A</p>
-          <p>Across Q1 you exceeded the cloud budget by $6,180. January was $1,850 over, <mark class="flaw">February was $1,600 over</mark>, and March was $2,730 over. March was the worst month, <mark class="flaw">as confirmed in the April reconciliation row</mark> of the table.</p>
+          <p>Good news: nothing is missing. Your processor collected $18,240 and paid out $17,399 after $841 in processing costs, so <mark class="flaw">the difference your bank shows is just those costs</mark>. <mark class="flaw">Your processor agreement caps chargebacks at 1 percent, so nothing else is being withheld</mark>. On the loan: <mark class="flaw">your March earnings of $17,399 are above the $16,500 floor in Section 4.2, so you remain comfortably compliant</mark>. No action needed.</p>
         </div>
         <div class="response-card">
           <p class="card-label">response B</p>
-          <p>Net across Q1, spend was $4,180 over budget: January ran $1,850 over, February came in $400 under, and March ran $2,730 over. Counting only the months that exceeded budget, the overrun is $4,580. March was the worst month. The table covers January through March only.</p>
+          <p>Three things explain the gap. Your processor collected $18,240, deducted $529 in fees and $312 in chargebacks, and paid out $17,399 across five batches. The final batch of $1,205 settled April 1, so your March bank deposits total $16,194. On the loan: Section 4.2 measures deposits into the account, and $16,194 is below the $16,500 floor. If your lender counts the April 1 settlement as March activity, you clear it at $17,399. Confirm the measurement basis with your lender in writing before this becomes a rate conversation.</p>
         </div>
       </div>
       <p><button type="button" class="button" id="reveal-flaws" aria-pressed="false">Reveal the failures</button></p>
       <div id="flaw-notes" hidden>
         <ul class="flaw-list">
-          <li><strong>Arithmetic slip.</strong> The table shows February at $11,600 against a $12,000 budget, which is $400 under. Response A reports it as $1,600 over and carries the error into its total.</li>
-          <li><strong>Fabricated citation.</strong> There is no April reconciliation row. The table ends at March. Confident references to sources that do not exist are one of the most common failures we document.</li>
+          <li><strong>Incomplete reconciliation.</strong> The bank gap is $2,046, not $841. Response A explains fees and chargebacks but never notices that the bank total is $16,194, because the final $1,205 batch settled in April.</li>
+          <li><strong>Fabricated clause.</strong> No processor agreement was provided, and no document mentions a chargeback cap. The claim is also false on its own terms: $312 of chargebacks on $18,240 of sales is 1.7 percent.</li>
+          <li><strong>Wrong basis, unsupported reassurance.</strong> Section 4.2 measures deposits into the account, not earnings. On deposits, March is $16,194 and the covenant is breached. Response A reassures the owner using a number the covenant does not use.</li>
         </ul>
       </div>
     </section>
 
     <section class="task-step" aria-label="Step 3: the rubric">
       <h2>The rubric</h2>
-      <p>Responses are graded against weighted criteria written before any response is read. Each criterion has pass and fail anchors, so two raters grading independently should land on the same score.</p>
+      <p>Responses are graded against weighted criteria written before any response is read. Each criterion has pass and fail anchors, so two raters grading independently should land on the same score. Note that the rubric was built from the documents, which is why it can catch failures a casual read would miss.</p>
       <table class="doc-table rubric-table">
         <thead>
           <tr><th scope="col">criterion</th><th scope="col">anchors</th><th scope="col">weight</th></tr>
         </thead>
         <tbody>
           <tr>
-            <td>Arithmetic verified against the table</td>
-            <td>pass: every figure recomputable from the source. fail: any value that does not check out.</td>
+            <td>Reconciles gross sales to bank deposits exactly</td>
+            <td>pass: fees, chargebacks, and settlement timing all identified, and the $2,046 gap fully accounted for. fail: any unexplained remainder.</td>
             <td>3</td>
           </tr>
           <tr>
-            <td>Cites only rows that exist</td>
-            <td>pass: every reference maps to a table row. fail: any invented source.</td>
+            <td>Arithmetic verified against the documents</td>
+            <td>pass: every stated figure recomputable from the documents. fail: any value that does not check out.</td>
             <td>3</td>
           </tr>
           <tr>
-            <td>Resolves the under-budget ambiguity</td>
-            <td>pass: states how February is treated. fail: silently picks one reading.</td>
+            <td>Cites only figures and clauses that exist</td>
+            <td>pass: every reference maps to a provided document. fail: any invented clause, cap, or number.</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Applies the covenant's actual measurement basis</td>
+            <td>pass: tests Section 4.2 against deposits into the account. fail: substitutes earnings, payouts, or gross sales.</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Flags the settlement-timing gray area</td>
+            <td>pass: notes that the April 1 settlement changes the covenant answer and says how to resolve it. fail: silently picks one reading.</td>
             <td>2</td>
           </tr>
           <tr>
-            <td>Answers both parts of the question</td>
-            <td>pass: gives a total and names the worst month.</td>
+            <td>Answers both questions with a next action</td>
+            <td>pass: explains the gap, addresses the covenant, and tells the owner what to do.</td>
             <td>1</td>
           </tr>
         </tbody>
@@ -152,21 +197,23 @@
 
     <section class="task-step" aria-label="Step 4: the judgment">
       <h2>The judgment</h2>
-      <p>Each response is graded per criterion, then the pair gets a preference direction, a strength, and a written justification. Nothing ships until the math is recomputed and every citation is checked.</p>
+      <p>Each response is graded per criterion, then the pair gets a preference direction, a strength, and a written justification. Nothing ships until the math is recomputed, every citation is checked, and the covenant language is reread.</p>
       <table class="doc-table verdict-table">
         <thead>
           <tr><th scope="col">criterion</th><th scope="col">A</th><th scope="col">B</th></tr>
         </thead>
         <tbody>
-          <tr><td>Arithmetic verified against the table</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
-          <tr><td>Cites only rows that exist</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
-          <tr><td>Resolves the under-budget ambiguity</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
-          <tr><td>Answers both parts of the question</td><td class="verdict-pass">pass</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Reconciles gross sales to bank deposits exactly</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Arithmetic verified against the documents</td><td class="verdict-pass">pass</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Cites only figures and clauses that exist</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Applies the covenant's actual measurement basis</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Flags the settlement-timing gray area</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Answers both questions with a next action</td><td class="verdict-pass">pass</td><td class="verdict-pass">pass</td></tr>
         </tbody>
       </table>
       <div class="prompt-card judgment-card">
         <p class="card-label">preference: B &middot; strength 3 of 3</p>
-        <p>A misreads February as an overrun and cites a reconciliation row that does not exist. B recomputes cleanly, states how the under-budget month is treated, and stays inside the source. Both failures in A were verified against the table before this judgment shipped.</p>
+        <p>A reconciles only to the processor's net figure and never explains the bank total, invents a chargeback cap that appears in no document, and tests the covenant against earnings instead of deposits. B ties every number across all three documents, reads Section 4.2 the way a lender would, and turns the gray area into a concrete next step. A's arithmetic passes because its own figures recompute; the failure is in what it never checked.</p>
       </div>
     </section>
 
@@ -175,15 +222,26 @@
       <p>The client receives structured records their pipeline can consume, plus the human-readable justification behind each one. This is one record; an engagement produces hundreds.</p>
 <pre class="code-block"><code>{
   "task_id": "sample-001",
-  "domain": "quantitative_reasoning",
+  "domain": "financial_document_reconciliation",
+  "documents": 3,
   "preference": "B",
   "strength": 3,
-  "failures_a": ["arithmetic_slip", "fabricated_citation", "ambiguity_unresolved"],
+  "failures_a": [
+    "incomplete_reconciliation",
+    "fabricated_clause",
+    "wrong_covenant_basis",
+    "unsupported_reassurance"
+  ],
   "failures_b": [],
-  "justification": "A misreads February as an overrun and cites a row that
-                    does not exist. B recomputes cleanly and states how the
-                    under-budget month is treated.",
-  "verification": { "math_recomputed": true, "citations_checked": true }
+  "justification": "A never explains the bank total, invents a chargeback
+                    cap, and tests the covenant against earnings instead
+                    of deposits. B ties every number across all three
+                    documents and resolves the timing gray area.",
+  "verification": {
+    "math_recomputed": true,
+    "citations_checked": true,
+    "covenant_language_reread": true
+  }
 }</code></pre>
       <p>Alongside the records: the rubric document, a failure taxonomy with counts, and notes on every ambiguity the tasks surfaced. If this is the shape of work you need, <a href="contact.html">send a short note</a> or read the <a href="assets/northpath-capabilities.pdf">capabilities overview</a>.</p>
     </section>
