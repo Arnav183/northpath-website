@@ -636,6 +636,276 @@ a {
   }
 }
 
+/* ---------- sample task walkthrough ---------- */
+
+.task-intro {
+  padding-bottom: 0;
+}
+
+.task-shell {
+  max-width: 860px;
+  padding: 56px 0 110px;
+}
+
+.stepper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 44px;
+}
+
+.step-btn {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.step-btn span {
+  color: var(--accent);
+  margin-right: 6px;
+}
+
+.step-btn:hover,
+.step-btn[aria-current="step"] {
+  border-color: var(--accent);
+}
+
+.step-btn[aria-current="step"] {
+  color: var(--accent);
+}
+
+.task-step {
+  margin-bottom: 56px;
+}
+
+.js-steps .task-step {
+  display: none;
+  margin-bottom: 0;
+}
+
+.js-steps .task-step.active {
+  display: block;
+}
+
+.task-step h2 {
+  margin-bottom: 20px;
+}
+
+.task-step h2:focus {
+  outline: none;
+}
+
+.task-step > p {
+  max-width: 62ch;
+}
+
+.card-label {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  margin: 0 0 10px;
+  text-align: left;
+}
+
+.prompt-card,
+.response-card {
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin: 24px 0;
+}
+
+.prompt-card p:last-child,
+.response-card p:last-child {
+  margin-bottom: 0;
+}
+
+.response-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.response-grid .response-card {
+  margin: 0;
+}
+
+.response-grid + p {
+  margin-top: 28px;
+}
+
+.doc-table {
+  width: 100%;
+  max-width: 620px;
+  border-collapse: collapse;
+  margin: 24px 0;
+  font-size: 0.9375rem;
+}
+
+.doc-table caption {
+  padding-bottom: 10px;
+}
+
+.doc-table th {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  text-align: left;
+  padding: 8px 20px 8px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.doc-table td {
+  padding: 10px 20px 10px 0;
+  border-bottom: 1px solid var(--hairline);
+  font-variant-numeric: tabular-nums;
+  vertical-align: top;
+}
+
+.rubric-table {
+  max-width: none;
+}
+
+.rubric-table td:nth-child(2) {
+  font-size: 0.875rem;
+}
+
+.verdict-pass,
+.verdict-fail {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  letter-spacing: 0.04em;
+}
+
+.verdict-pass {
+  color: var(--accent);
+}
+
+.verdict-fail {
+  color: var(--ink);
+  opacity: 0.6;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+.task-note {
+  font-size: 0.9375rem;
+  max-width: 62ch;
+}
+
+mark.flaw {
+  background: transparent;
+  color: inherit;
+}
+
+.flaws-revealed mark.flaw {
+  background: rgba(76, 115, 80, 0.16);
+  outline: 1px solid var(--accent);
+  border-radius: 2px;
+  padding: 0 2px;
+}
+
+.flaw-list {
+  margin: 20px 0 0;
+  padding-left: 0;
+  list-style: none;
+  border-left: 2px solid var(--accent);
+}
+
+.flaw-list li {
+  padding: 4px 0 4px 18px;
+  max-width: 60ch;
+}
+
+.flaw-list li + li {
+  margin-top: 12px;
+}
+
+.judgment-card {
+  margin-top: 28px;
+}
+
+.code-block {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin: 24px 0;
+  overflow-x: auto;
+}
+
+.task-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 28px;
+  margin-top: 8px;
+}
+
+.task-controls .meta {
+  margin: 0;
+}
+
+.button-ghost {
+  display: inline-block;
+  background: none;
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: 4px;
+  padding: 11px 25px;
+  cursor: pointer;
+}
+
+.button-ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.task-controls .button {
+  border: 0;
+  font-family: var(--font-sans);
+  cursor: pointer;
+}
+
+.task-controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+  pointer-events: none;
+}
+
+@media (max-width: 719px) {
+  .response-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rubric-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .rubric-table td:nth-child(2) {
+    min-width: 260px;
+  }
+}
+
 /* ---------- capabilities one-pager ---------- */
 
 .cap-doc {

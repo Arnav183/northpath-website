@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sample task | Northpath Consulting</title>
+  <meta name="description" content="An interactive walkthrough of one evaluation task, start to finish: the prompt, two model responses, the rubric, the judgment, and the record that ships. Fully synthetic example.">
+  <meta name="theme-color" content="#F6F7F1">
+
+  <link rel="canonical" href="https://arnav183.github.io/northpath-website/sample-task.html">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Sample task | Northpath Consulting">
+  <meta property="og:description" content="An interactive walkthrough of one evaluation task, start to finish: the prompt, two model responses, the rubric, the judgment, and the record that ships.">
+  <meta property="og:url" content="https://arnav183.github.io/northpath-website/sample-task.html">
+  <meta property="og:image" content="https://arnav183.github.io/northpath-website/assets/logo.jpg">
+  <meta property="og:image:width" content="644">
+  <meta property="og:image:height" content="254">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Sample task | Northpath Consulting">
+  <meta name="twitter:description" content="An interactive walkthrough of one evaluation task, start to finish: the prompt, two model responses, the rubric, the judgment, and the record that ships.">
+  <meta name="twitter:image" content="https://arnav183.github.io/northpath-website/assets/logo.jpg">
+
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#top">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="index.html" aria-label="Northpath Consulting, home">
+      <img src="assets/logo.jpg" alt="Northpath Consulting logo" width="644" height="254">
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <span class="sr-only">Menu</span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+      <span class="bar" aria-hidden="true"></span>
+    </button>
+    <nav id="site-nav" class="site-nav" aria-label="Site">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#process">Process</a>
+      <a href="careers.html">Careers</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="apply-section task-intro" aria-label="Introduction">
+    <div class="apply-head">
+      <p class="section-label">sample task</p>
+      <h1>One evaluation task, start to finish</h1>
+      <p>This walkthrough shows the shape of a single task from our evaluation pipeline: the prompt, two model responses, the rubric, the judgment, and the record that ships. A real dataset is this, several hundred times over.</p>
+      <p class="meta">fully synthetic example &middot; client tasks are covered by NDA</p>
+    </div>
+  </section>
+
+  <div class="task-shell" id="task-shell">
+    <div class="stepper" role="group" aria-label="Walkthrough steps">
+      <button type="button" class="step-btn"><span aria-hidden="true">01</span> task</button>
+      <button type="button" class="step-btn"><span aria-hidden="true">02</span> responses</button>
+      <button type="button" class="step-btn"><span aria-hidden="true">03</span> rubric</button>
+      <button type="button" class="step-btn"><span aria-hidden="true">04</span> judgment</button>
+      <button type="button" class="step-btn"><span aria-hidden="true">05</span> deliverable</button>
+    </div>
+
+    <section class="task-step active" aria-label="Step 1: the task">
+      <h2>The task</h2>
+      <p>Every task pairs a prompt with source material and a verifiable ground truth. Here the assistant must compute from a table, which makes every claim in its answer checkable.</p>
+      <div class="prompt-card">
+        <p class="card-label">prompt</p>
+        <p>Using the table, how much did we exceed the cloud budget across Q1, and which month was worst?</p>
+      </div>
+      <table class="doc-table">
+        <caption class="card-label">source document: cloud spend, Q1</caption>
+        <thead>
+          <tr><th scope="col">month</th><th scope="col">budget</th><th scope="col">actual</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>January</td><td>$12,000</td><td>$13,850</td></tr>
+          <tr><td>February</td><td>$12,000</td><td>$11,600</td></tr>
+          <tr><td>March</td><td>$14,000</td><td>$16,730</td></tr>
+        </tbody>
+      </table>
+      <p class="task-note">Note the trap: February came in under budget, and the question does not say how to treat that. A good response resolves the ambiguity instead of ignoring it.</p>
+    </section>
+
+    <section class="task-step" aria-label="Step 2: the responses">
+      <h2>Two model responses</h2>
+      <p>The same prompt goes to two models. Read both. One of them contains two verifiable failures.</p>
+      <div class="response-grid">
+        <div class="response-card" id="response-a">
+          <p class="card-label">response A</p>
+          <p>Across Q1 you exceeded the cloud budget by $6,180. January was $1,850 over, <mark class="flaw">February was $1,600 over</mark>, and March was $2,730 over. March was the worst month, <mark class="flaw">as confirmed in the April reconciliation row</mark> of the table.</p>
+        </div>
+        <div class="response-card">
+          <p class="card-label">response B</p>
+          <p>Net across Q1, spend was $4,180 over budget: January ran $1,850 over, February came in $400 under, and March ran $2,730 over. Counting only the months that exceeded budget, the overrun is $4,580. March was the worst month. The table covers January through March only.</p>
+        </div>
+      </div>
+      <p><button type="button" class="button" id="reveal-flaws" aria-pressed="false">Reveal the failures</button></p>
+      <div id="flaw-notes" hidden>
+        <ul class="flaw-list">
+          <li><strong>Arithmetic slip.</strong> The table shows February at $11,600 against a $12,000 budget, which is $400 under. Response A reports it as $1,600 over and carries the error into its total.</li>
+          <li><strong>Fabricated citation.</strong> There is no April reconciliation row. The table ends at March. Confident references to sources that do not exist are one of the most common failures we document.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="task-step" aria-label="Step 3: the rubric">
+      <h2>The rubric</h2>
+      <p>Responses are graded against weighted criteria written before any response is read. Each criterion has pass and fail anchors, so two raters grading independently should land on the same score.</p>
+      <table class="doc-table rubric-table">
+        <thead>
+          <tr><th scope="col">criterion</th><th scope="col">anchors</th><th scope="col">weight</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Arithmetic verified against the table</td>
+            <td>pass: every figure recomputable from the source. fail: any value that does not check out.</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Cites only rows that exist</td>
+            <td>pass: every reference maps to a table row. fail: any invented source.</td>
+            <td>3</td>
+          </tr>
+          <tr>
+            <td>Resolves the under-budget ambiguity</td>
+            <td>pass: states how February is treated. fail: silently picks one reading.</td>
+            <td>2</td>
+          </tr>
+          <tr>
+            <td>Answers both parts of the question</td>
+            <td>pass: gives a total and names the worst month.</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="task-step" aria-label="Step 4: the judgment">
+      <h2>The judgment</h2>
+      <p>Each response is graded per criterion, then the pair gets a preference direction, a strength, and a written justification. Nothing ships until the math is recomputed and every citation is checked.</p>
+      <table class="doc-table verdict-table">
+        <thead>
+          <tr><th scope="col">criterion</th><th scope="col">A</th><th scope="col">B</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Arithmetic verified against the table</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Cites only rows that exist</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Resolves the under-budget ambiguity</td><td class="verdict-fail">fail</td><td class="verdict-pass">pass</td></tr>
+          <tr><td>Answers both parts of the question</td><td class="verdict-pass">pass</td><td class="verdict-pass">pass</td></tr>
+        </tbody>
+      </table>
+      <div class="prompt-card judgment-card">
+        <p class="card-label">preference: B &middot; strength 3 of 3</p>
+        <p>A misreads February as an overrun and cites a reconciliation row that does not exist. B recomputes cleanly, states how the under-budget month is treated, and stays inside the source. Both failures in A were verified against the table before this judgment shipped.</p>
+      </div>
+    </section>
+
+    <section class="task-step" aria-label="Step 5: the deliverable">
+      <h2>What ships</h2>
+      <p>The client receives structured records their pipeline can consume, plus the human-readable justification behind each one. This is one record; an engagement produces hundreds.</p>
+<pre class="code-block"><code>{
+  "task_id": "sample-001",
+  "domain": "quantitative_reasoning",
+  "preference": "B",
+  "strength": 3,
+  "failures_a": ["arithmetic_slip", "fabricated_citation", "ambiguity_unresolved"],
+  "failures_b": [],
+  "justification": "A misreads February as an overrun and cites a row that
+                    does not exist. B recomputes cleanly and states how the
+                    under-budget month is treated.",
+  "verification": { "math_recomputed": true, "citations_checked": true }
+}</code></pre>
+      <p>Alongside the records: the rubric document, a failure taxonomy with counts, and notes on every ambiguity the tasks surfaced. If this is the shape of work you need, <a href="contact.html">send a short note</a> or read the <a href="assets/northpath-capabilities.pdf">capabilities overview</a>.</p>
+    </section>
+
+    <div class="task-controls">
+      <button type="button" class="button-ghost" id="step-prev">Back</button>
+      <p class="meta" id="step-counter" aria-live="polite">step 1 of 5</p>
+      <button type="button" class="button" id="step-next">Next step</button>
+    </div>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-row">
+      <p class="footer-name">Northpath Consulting, Inc</p>
+      <p class="footer-meta">Registered in Georgia, USA</p>
+    </div>
+    <div class="footer-row">
+      <nav class="footer-links" aria-label="Footer">
+        <a href="mailto:northpathconsultinginc@gmail.com">Email</a>
+        <a href="https://www.linkedin.com/company/northpath-consultinginc" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+      <p class="footer-year">2026</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+<script src="sample.js" defer></script>
+</body>
+</html>
