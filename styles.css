@@ -372,20 +372,39 @@ a {
   }
 }
 
-/* ---------- work figures, coda, process steps ---------- */
+/* ---------- deliverables, coda, process steps ---------- */
 
-.figure-row {
+.deliverable {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 56px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 48px;
+  align-items: center;
+  padding: 48px 0;
+  border-top: 1px solid var(--hairline);
+}
+
+.deliverable:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.deliverable-text h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+}
+
+.deliverable-text p {
+  margin: 0;
 }
 
 .artifact {
   margin: 0;
   border: 1px solid var(--hairline);
   border-radius: 4px;
-  padding: 20px 20px 16px;
+  padding: 24px 24px 18px;
 }
 
 .artifact svg {
@@ -441,9 +460,14 @@ a {
 }
 
 @media (max-width: 899px) {
-  .figure-row {
+  .deliverable {
     grid-template-columns: 1fr;
-    max-width: 420px;
+    gap: 24px;
+    padding: 36px 0;
+  }
+
+  .deliverable .artifact {
+    max-width: 440px;
   }
 }
 

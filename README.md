@@ -33,7 +33,7 @@ form.
 
 `capabilities.html` is a one-page capabilities overview with a print stylesheet
 sized for US Letter. The generated PDF lives at
-`assets/northpath-capabilities.pdf` and is linked from the Contact section.
+`assets/northpath-capabilities.pdf` and is linked from `contact.html`.
 
 To regenerate the PDF after editing `capabilities.html`: open the page in
 Chrome or Edge, print, set the destination to "Save as PDF" with default
@@ -46,10 +46,10 @@ msedge --headless --print-to-pdf="assets\northpath-capabilities.pdf" --no-pdf-he
 
 ## Things to change
 
-- **Email address**: `northpathconsultinginc@gmail.com` appears in the Contact
-  section and JSON-LD of `index.html`, the footer of every page,
-  `privacy.html`, and `capabilities.html`. Search and replace across the repo
-  to change it.
+- **Email address**: `northpathconsultinginc@gmail.com` appears on
+  `contact.html`, in the JSON-LD of `index.html`, in the footer of every page,
+  and on `privacy.html` and `capabilities.html`. Search and replace across the
+  repo to change it.
 - **LinkedIn URL**: `https://www.linkedin.com/company/northpath-consultinginc`
   appears in every footer, the JSON-LD on `index.html`, and
   `capabilities.html`.
@@ -65,7 +65,8 @@ msedge --headless --print-to-pdf="assets\northpath-capabilities.pdf" --no-pdf-he
 ## Files
 
 ```
-index.html                        home page (services, work, about, process, contact)
+index.html                        home page (services, work, deliverables, about, process)
+contact.html                      contact page (email + capabilities PDF)
 careers.html                      careers page (roles + application process)
 apply.html                        application page (links to the Google Form, noindex)
 capabilities.html                 print-ready one-page capabilities overview
