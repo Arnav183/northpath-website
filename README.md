@@ -57,10 +57,10 @@ msedge --headless --print-to-pdf="assets\northpath-capabilities.pdf" --no-pdf-he
   `TODO: add team background here` marking where to add background.
 - **Work entries**: keep the Selected engagements section anonymized; never
   include client, platform, or project names.
-- **Canonical and social URLs**: all pages use `https://northpathconsulting.com/`
-  in canonical, Open Graph, and sitemap URLs. If the site is served from
-  `https://<username>.github.io/<repo>/` instead, update those (see the
-  `NOTE:` comments) plus `sitemap.xml` and `robots.txt`.
+- **Canonical and social URLs**: all pages use `https://arnav183.github.io/northpath-website/`
+  in canonical, Open Graph, and sitemap URLs. If you attach a custom domain
+  later, search and replace that base URL across the repo (see the `NOTE:`
+  comments) including `sitemap.xml` and `robots.txt`.
 
 ## Files
 
