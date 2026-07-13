@@ -1,0 +1,7 @@
+# local test artifacts
+.playwright-mcp/
+*.log
+
+# OS noise
+Thumbs.db
+.DS_Store
