@@ -283,6 +283,34 @@ a {
   margin: 10px 0 0;
 }
 
+.entry-points {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+}
+
+.entry-points li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.entry-points li + li {
+  margin-top: 7px;
+}
+
+.entry-points li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
 /* ---------- careers ---------- */
 
 .role {
